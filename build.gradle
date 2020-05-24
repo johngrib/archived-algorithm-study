@@ -1,0 +1,20 @@
+plugins {
+    id 'java'
+    id 'maven'
+    id 'io.freefair.lombok' version '4.1.6'
+}
+
+group 'com.johngrib'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 14
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.projectlombok:lombok:1.18.12'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.3.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.3.1'
+}
