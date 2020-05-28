@@ -1,4 +1,4 @@
-package stack;
+package sedgewick._1_fundamentals;
 
 import java.util.Iterator;
 
