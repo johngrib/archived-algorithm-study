@@ -4,6 +4,35 @@ package sedgewick._2_sorting;
  * 병합 정렬.
  */
 public class MergeSort {
+  private int[] aux;
+
+  /**
+   * 주어진 a 배열의 a[lo..hi] 구간을 정렬한다.
+   *
+   * @param a 배열
+   */
+  void topDownMergeSort(int[] a) {
+    aux = new int[a.length];
+    topDownMergeSort(a, 0, a.length - 1);
+  }
+
+  /**
+   * 주어진 a 배열의 a[lo..hi] 구간을 정렬한다.
+   *
+   * @param a  배열
+   * @param lo 정렬 대상 시작 인덱스
+   * @param hi 정렬 대상 마지막 인덱스
+   */
+  void topDownMergeSort(int[] a, int lo, int hi) {
+    if (hi <= lo) {
+      return;
+    }
+    int mid = lo + (hi - lo) / 2;
+    topDownMergeSort(a, lo, mid);     // 왼쪽 절반 정렬
+    topDownMergeSort(a, mid + 1, hi); // 오른쪽 절반 정렬
+    merge(a, lo, mid, hi);            // 결과 병합
+  }
+
 
   /**
    * 주어진 a 배열의 sub 배열 a[lo..mid]와 sub 배열 a[mid+1..hi]를 병합합니다.
@@ -14,8 +43,6 @@ public class MergeSort {
    * @param hi  두번째 sub 배열 마지막 인덱스
    */
   void merge(int[] a, int lo, int mid, int hi) {
-    int[] aux = new int[a.length];
-
     //  a[lo..hi]를 aux[lo..hi]에 복제
     for (int k = lo; k <= hi; k++) {
       aux[k] = a[k];
