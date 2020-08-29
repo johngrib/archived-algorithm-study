@@ -7,9 +7,7 @@ public class MergeSort {
   private int[] aux;
 
   /**
-   * 주어진 a 배열의 a[lo..hi] 구간을 정렬한다.
-   *
-   * @param a 배열
+   * 주어진 a 배열을 정렬한다.
    */
   void topDownMergeSort(int[] a) {
     aux = new int[a.length];
@@ -33,6 +31,20 @@ public class MergeSort {
     merge(a, lo, mid, hi);            // 결과 병합
   }
 
+  /**
+   * 주어진 a 배열을 정렬한다.
+   */
+  void bottomUpMergeSort(int[] a) {
+    int N = a.length;
+    aux = new int[N];
+    for (int size = 1; size < N; size = size + size) {
+      // size: 서브 배열의 크기
+      for (int lo = 0; lo < N - size; lo += size + size) {
+        // lo: 서브 배열의 인덱스
+        merge(a, lo, lo + size - 1, Math.min(lo + size + size - 1, N - 1));
+      }
+    }
+  }
 
   /**
    * 주어진 a 배열의 sub 배열 a[lo..mid]와 sub 배열 a[mid+1..hi]를 병합합니다.
